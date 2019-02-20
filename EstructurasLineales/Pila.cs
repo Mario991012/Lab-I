@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EstructurasLineales
 {
-    class Pila<T> : IEstructurasLineales<T>, IEnumerable<T> where T : IComparable
+    public class Pila<T> : IEstructurasLineales<T>, IEnumerable<T> where T : IComparable
     {
         public Nodo<T> Cabeza { get; set; }
         public int tamaño { get; set; }

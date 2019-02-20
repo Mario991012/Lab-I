@@ -42,7 +42,7 @@ namespace Lab_1.Controllers
                 //Asignaciones
 
                 Nuevo.AgregarALista(Nuevo); //Agregando elemento a la lista
-                
+                Nuevo.AgregarAPila(Nuevo);  //Agregando a pila
                 Nuevo.Nombre = collection["Nombre"];
                 Nuevo.codigo = collection["Codigo"];
                 Nuevo.Citas = citas.Next(1, 5);
@@ -50,7 +50,7 @@ namespace Lab_1.Controllers
                 Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
                 Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
 
-                if(collection["Llegada"] == " ")
+                if(String.IsNullOrWhiteSpace(collection["Llegada"]))
                 {
                     Nuevo.Llegada = DateTime.Now;
                 }
