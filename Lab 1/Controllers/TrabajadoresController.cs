@@ -19,9 +19,9 @@ namespace Lab_1.Controllers
         }
 
         // GET: Trabajadores/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(FormCollection collection)
         {
-            return View();
+            return RedirectToAction("Index", "Pila");
         }
 
         // GET: Trabajadores/Create
@@ -37,7 +37,6 @@ namespace Lab_1.Controllers
         {
             try
             {
-                DateTime auxiliar = new DateTime();
                 //Instancias
                 var Nuevo = new Trabajadores();
                 Random citas = new Random();

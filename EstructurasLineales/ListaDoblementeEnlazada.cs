@@ -38,6 +38,17 @@ namespace EstructurasLineales
             return false;
         }
 
+        public T Get(int posicion)
+        {
+            var current = Cabeza;
+            for (int i = 0; i < posicion - 1; i++)
+            {
+                current = current.Siguiente;
+            }
+
+            return current.Valor;
+        }
+
         public T Buscar(int position)
         {
             var NodoAux = Cabeza;

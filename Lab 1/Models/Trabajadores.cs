@@ -13,23 +13,19 @@ namespace Lab_1.Models
         public string Nombre { get; set; }
         [DisplayName("Codigo de Empleado")]
         public string codigo { get; set; }
-        [DisplayName("Jornada Terminada")] //TODO FALSO
-        public bool JTerminada { get; set; }
-        [DisplayName("Estado: En oficina")]
-        public bool BoolOficina1 { get; set; }
-
+        
         [DisplayName("Sueldo del dia")]
         public double sueldoFinal { get; set; }
         [DisplayName("Cantidad de Citas")]
         public int Citas { get; set; }
 
+        
         [DisplayName("Hora de Llegada (Formato: AA/MM/DD HH:MM:SS)")]
         public DateTime Llegada { get; set; }
 
         [DisplayName("Hora de Salida")]
         public DateTime Salida { get; set; }
-        [DisplayName("Jornada Terminada")] //TODO VERDADERO
-        public bool JTerminada { get; set; }
+        
         [DisplayName("Estado: En oficina")]
         public bool BoolOficina { get; set; } //TODO FALSO
 

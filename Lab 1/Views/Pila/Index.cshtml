@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Lab_1.Models.Trabajadores>
 
 @{
-    ViewBag.Title = "PilaEmpleados";
+    ViewBag.Title = "Index";
 }
 
-<h2>PilaEmpleados</h2>
+<h2>Index Pila</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+<p>
+    <button type="button" onclick="location.href = '@Url.Action("Create", "Trabajadores")'">Registrar trabajador</button>
+</p>
 <table class="table">
     <tr>
         <th>
@@ -35,6 +35,8 @@
         <th></th>
     </tr>
 
+    @for(int i = )
+
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -58,7 +60,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.BoolOficina)
         </td>
+        
     </tr>
 }
 
 </table>
+
+<button type="button" onclick="location.href = '@Url.Action("Index", "Trabajadores")'">Ir a Lista</button>

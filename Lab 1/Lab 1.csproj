@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PilaController.cs" />
     <Compile Include="Controllers\TrabajadoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,7 +229,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Trabajadores\Index.cshtml" />
     <Content Include="Views\Trabajadores\Create.cshtml" />
-    <Content Include="Views\Trabajadores\PilaEmpleados.cshtml" />
+    <Content Include="Views\Pila\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
