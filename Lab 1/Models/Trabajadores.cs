@@ -51,11 +51,14 @@ namespace Lab_1.Models
 
         public DateTime HoraSalida (DateTime Entrada, int citas)
         {
-            DateTime Salida = Entrada;
-            //Retorna hora de salida final
-            Salida = Entrada.AddHours(2);
-            Salida = Entrada.AddHours(1.5 * citas);
-            return Salida;
+            //Suma las horas totales a la hora inicial
+            return Entrada.AddHours(2+1.5*citas);
         }
+
+        public void SimularSalida()
+        {
+            BoolOficina = false;
+        }
+
     }
 }

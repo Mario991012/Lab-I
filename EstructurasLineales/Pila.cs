@@ -11,7 +11,6 @@ namespace EstructurasLineales
         public Nodo<T> Cabeza { get; set; }
         public int tamaño { get; set; }
 
-
         public void Agregar(T valor)
         {
             var NodoAux = new Nodo<T>(valor);
@@ -27,6 +26,24 @@ namespace EstructurasLineales
                 Cabeza = NodoAux;
             }
         }
+
+        public Nodo<T> Pop()
+        {
+            if(tamaño > 0)
+            {
+                Nodo<T> Aux = Cabeza;
+                Cabeza = Cabeza.Siguiente;
+                return Aux;
+            }else
+            {
+                return null;
+            }
+        }
+
+        //public Nodo<T> Buscar()
+        //{
+        //    ////////////////
+        //}
 
         public IEnumerator<T> GetEnumerator()
         {

@@ -33,6 +33,10 @@ namespace EstructurasLineales
             
         }
 
+        public bool SimularSalida()
+        {
+            return false;
+        }
 
         public T Buscar(int position)
         {
@@ -44,7 +48,6 @@ namespace EstructurasLineales
 
             return NodoAux.Valor;
         }
-
 
         public IEnumerator<T> GetEnumerator()
         {

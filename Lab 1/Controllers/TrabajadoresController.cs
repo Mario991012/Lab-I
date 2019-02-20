@@ -14,6 +14,7 @@ namespace Lab_1.Controllers
         public ActionResult Index()
         {
             //Retorna la lista unicamente
+            //Datos.Instancia.ListaTrabajadores.OrderBy(
             return View(Datos.Instancia.ListaTrabajadores);
         }
 
@@ -29,12 +30,14 @@ namespace Lab_1.Controllers
             return View();
         }
 
+        
         // POST: Trabajadores/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
+                DateTime auxiliar = new DateTime();
                 //Instancias
                 var Nuevo = new Trabajadores();
                 Random citas = new Random();
@@ -47,10 +50,8 @@ namespace Lab_1.Controllers
                 Nuevo.codigo = collection["Codigo"];
                 Nuevo.Citas = citas.Next(1, 5);
                 Nuevo.BoolOficina = true;
-                Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
-                Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
 
-                if(String.IsNullOrWhiteSpace(collection["Llegada"]))
+                if (Nuevo.Llegada == null)
                 {
                     Nuevo.Llegada = DateTime.Now;
                 }
@@ -58,6 +59,9 @@ namespace Lab_1.Controllers
                 {
                     Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
                 }
+
+                Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
+                Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
 
                 //Regresa a Index
                 return RedirectToAction("Index");
@@ -67,49 +71,6 @@ namespace Lab_1.Controllers
                 return View();
             }
         }
-
-        // GET: Trabajadores/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Trabajadores/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Trabajadores/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Trabajadores/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }
