@@ -14,14 +14,7 @@ namespace Lab_1.Controllers
         public ActionResult Index()
         {
             //Retorna la lista unicamente
-            //Datos.Instancia.ListaTrabajadores.OrderBy(
             return View(Datos.Instancia.ListaTrabajadores);
-        }
-
-        // GET: Trabajadores/Details/5
-        public ActionResult Details(FormCollection collection)
-        {
-            return RedirectToAction("Index", "Pila");
         }
 
         // GET: Trabajadores/Create
@@ -47,6 +40,7 @@ namespace Lab_1.Controllers
                 Nuevo.codigo = collection["Codigo"];
                 Nuevo.Citas = citas.Next(1, 5);
                 Nuevo.BoolOficina = true;
+                Nuevo.HorasTrabajadas = 1.5*Nuevo.Citas + 2;
                 Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
 
                 if (Nuevo.Llegada == DateTime.MinValue)
@@ -69,55 +63,81 @@ namespace Lab_1.Controllers
             }
         }
 
-
-
-
-
-        // GET: Trabajadores/Create
-        public ActionResult Busqueda()
-        {
-            return View();
-        }
-
-
-        // POST: Trabajadores/Create
         [HttpPost]
-        public ActionResult Busqueda(FormCollection collection)
+        public ActionResult Resultados(string codigo, string nombre, string disp, string horas)
         {
-            try
+            //List<Trabajadores> listaBusqueda = new List<Trabajadores>();
+
+            if (codigo != null)
             {
-                //Instancias
-                var Nuevo = new Trabajadores();
-                Random citas = new Random();
-
-                //Asignaciones
-
-                Nuevo.Nombre = collection["Nombre"];
-                Nuevo.codigo = collection["Codigo"];
-                Nuevo.Citas = citas.Next(1, 5);
-                Nuevo.BoolOficina = true;
-                Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
-
-                if (Nuevo.Llegada == DateTime.MinValue)
+                foreach (var item in Datos.Instancia.ListaTrabajadores)
                 {
-                    Nuevo.Llegada = DateTime.Now;
+                    if (item.codigo == codigo)
+                    {
+                        Datos.Instancia.ListaAux.Agregar(item);
+                    }
                 }
-
-                Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
-                Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
-
-                Nuevo.AgregarALista(Nuevo); //Agregando elemento a la lista
-                Nuevo.AgregarAPila(Nuevo);  //Agregando a pila
-
-                //Regresa a Index
-                return RedirectToAction("Index");
             }
-            catch
+            else if (nombre != null)
             {
-                return View();
+                foreach (var item in Datos.Instancia.ListaTrabajadores)
+                {
+                    if (item.Nombre == nombre)
+                    {
+                        Datos.Instancia.ListaAux.Agregar(item);
+                        
+                    }
+                }
             }
+            else if (disp != null)
+            {
+                foreach (var item in Datos.Instancia.ListaTrabajadores)
+                {
+                    if (item.BoolOficina == bool.Parse(disp))
+                    {
+                        Datos.Instancia.ListaAux.Agregar(item);
+
+                    }
+                }
+            }
+            else if (horas != null)
+            {
+                foreach (var item in Datos.Instancia.ListaTrabajadores)
+                {
+                    if (item.HorasTrabajadas == double.Parse(horas))
+                    {
+                        Datos.Instancia.ListaAux.Agregar(item);
+
+                    }
+                }
+            }
+            return View(Datos.Instancia.ListaAux);
         }
 
-
+        public ActionResult Entrada()
+        {
+            foreach (var item in Datos.Instancia.PilaTrabajadores)
+            {
+                item.BoolOficina = true;
+            }
+            foreach (var item in Datos.Instancia.ListaTrabajadores)
+            {
+                item.BoolOficina = true;
+            }
+            return RedirectToAction("Index");
+        }
+   
+        public ActionResult Salida()
+        {
+            foreach(var item in Datos.Instancia.PilaTrabajadores)
+            {
+                item.BoolOficina = false;
+            }
+            foreach (var item in Datos.Instancia.ListaTrabajadores)
+            {
+                item.BoolOficina = false;
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

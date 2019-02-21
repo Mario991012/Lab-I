@@ -51,17 +51,6 @@ namespace EstructurasLineales
             return current.Valor;
         }
 
-        public T Buscar(int position)
-        {
-            var NodoAux = Cabeza;
-            for (int i = 0; i < position - 1; i++)
-            {
-                NodoAux = NodoAux.Siguiente;
-            }
-
-            return NodoAux.Valor;
-        }
-
         public IEnumerator<T> GetEnumerator()
         {
                 var NodoAux = Cabeza;

@@ -18,16 +18,16 @@ namespace Lab_1.Models
         public double sueldoFinal { get; set; }
         [DisplayName("Cantidad de Citas")]
         public int Citas { get; set; }
-
+        [DisplayName("Horas Trabajadas")]
+        public double HorasTrabajadas { get; set; }
         
         [DisplayName("Hora de Llegada (Formato: AA/MM/DD HH:MM:SS)")]
         public DateTime Llegada { get; set; }
-
         [DisplayName("Hora de Salida")]
         public DateTime Salida { get; set; }
         
         [DisplayName("Estado: En oficina")]
-        public bool BoolOficina { get; set; } //TODO FALSO
+        public bool BoolOficina { get; set; } 
 
         //METODOS A LLAMAR EN CONTROLLER
         public void AgregarALista(Trabajadores Trabajador)
@@ -35,7 +35,6 @@ namespace Lab_1.Models
             //Lista donde se almacena a cada trabajador
             Datos.Instancia.ListaTrabajadores.Agregar(Trabajador);
         }
-
 
         public void AgregarAPila(Trabajadores Trabajador)
         {
@@ -60,6 +59,7 @@ namespace Lab_1.Models
             //Suma las horas totales a la hora inicial
             return Entrada.AddHours(2+1.5*citas);
         }
+
 
         public void SimularSalida()
         {

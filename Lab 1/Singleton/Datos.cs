@@ -24,6 +24,7 @@ namespace Lab_1.Singleton
         //Lista y pila utilizada que pertenece a la libreria de clases
         public EstructurasLineales.ListaDoblementeEnlazada<Trabajadores> ListaTrabajadores = new EstructurasLineales.ListaDoblementeEnlazada<Trabajadores>();
         public EstructurasLineales.Pila<Trabajadores> PilaTrabajadores = new EstructurasLineales.Pila<Trabajadores>();
+        public EstructurasLineales.ListaDoblementeEnlazada<Trabajadores> ListaAux = new EstructurasLineales.ListaDoblementeEnlazada<Trabajadores>();
     }
 }
 

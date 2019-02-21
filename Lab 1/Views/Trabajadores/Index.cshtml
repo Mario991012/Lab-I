@@ -7,38 +7,7 @@
 <h2>MENÚ PRINCIPAL</h2>
 <h4>Empleados registrados</h4>
 
-@*BARRAS DE BUSQUEDA*@
-<tr>
-    @using (Html.BeginForm())
-    {
-        <p>
-            Buscar por nombre: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
-
-    @using (Html.BeginForm())
-    {
-        <p>
-            Buscar por horas trabajadas: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
-
-    @using (Html.BeginForm())
-    {
-        <p>
-            Buscar por codigo: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
-</tr>
-
-<p>
-    @Html.ActionLink("Registrar empleado", "Create")<br />
-    @Html.ActionLink("Bucar empleado", "Busqueda")
-</p>
-
+<h3>INFORMACION</h3>
 <table class="table">
     <tr>
         <th>
@@ -46,6 +15,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorasTrabajadas)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.sueldoFinal)
@@ -74,6 +46,9 @@
             @Html.DisplayFor(modelItem => item.codigo)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.HorasTrabajadas)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.sueldoFinal)
         </td>
         <td>
@@ -94,62 +69,48 @@
 </table>
 
 <button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
+<p>
+    @Html.ActionLink("Registrar empleado", "Create")<br />
+</p>
+
+<p>@Html.ActionLink("Simular salida", "Salida")</p>
+<p>@Html.ActionLink("Simular entrada", "Entrada")</p>
 
 
-
-
-
-
-@*TABLA DE PILA*@
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sueldoFinal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Citas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Llegada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BoolOficina)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+@*BARRAS DE BUSQUEDA*@
+<h3>BUSQUEDA</h3>
+<tr>
+    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sueldoFinal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Citas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Llegada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BoolOficina)
-            </td>
-        </tr>
+        <input type="text" name="id" id="id" />
+
+        <input type="submit" value="Buscar por Código" />
     }
+</tr>
+<tr>
+    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+    {
+        <input type="text" name="nombre" id="nombre" />
 
-</table>*@
+        <input type="submit" value="Buscar por nombre" />
+    }
+</tr>
+<tr>
+    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+    {
+        <input type="text" name="disp" id="disp" />
 
-<button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
-@Html.ActionLink("Simular salida", "Salida")
+        <input type="submit" value="Verificar si se encuentra en oficina" />
+
+    }
+    <h5>Disponible = "True", No disponible = "False"</h5>
+</tr>
+<tr>
+    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+    {
+        <input type="text" name="horas" id="horas" />
+
+        <input type="submit" value="Buscar por horas trabajadas" />
+    }
+</tr>
 
