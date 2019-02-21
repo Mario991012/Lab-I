@@ -230,6 +230,7 @@
     <Content Include="Views\Trabajadores\Index.cshtml" />
     <Content Include="Views\Trabajadores\Create.cshtml" />
     <Content Include="Views\Pila\Index.cshtml" />
+    <Content Include="Views\Trabajadores\Busqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

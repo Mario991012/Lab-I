@@ -36,6 +36,7 @@ namespace Lab_1.Models
             Datos.Instancia.ListaTrabajadores.Agregar(Trabajador);
         }
 
+
         public void AgregarAPila(Trabajadores Trabajador)
         {
             //Lista donde se almacena a cada trabajador

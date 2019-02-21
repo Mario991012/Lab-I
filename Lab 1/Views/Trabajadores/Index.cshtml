@@ -4,11 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>MENÚ PRINCIPAL</h2>
+<h4>Empleados registrados</h4>
+
+@*BARRAS DE BUSQUEDA*@
+<tr>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Buscar por nombre: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Buscar por horas trabajadas: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Buscar por codigo: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</tr>
 
 <p>
-    @Html.ActionLink("Registrar empleado", "Create")
+    @Html.ActionLink("Registrar empleado", "Create")<br />
+    @Html.ActionLink("Bucar empleado", "Busqueda")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -64,3 +94,62 @@
 </table>
 
 <button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
+
+
+
+
+
+
+@*TABLA DE PILA*@
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sueldoFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Citas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Llegada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoolOficina)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sueldoFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Citas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Llegada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoolOficina)
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+<button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
+@Html.ActionLink("Simular salida", "Salida")
+

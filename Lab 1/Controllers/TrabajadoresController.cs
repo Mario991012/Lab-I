@@ -43,24 +43,22 @@ namespace Lab_1.Controllers
 
                 //Asignaciones
 
-                Nuevo.AgregarALista(Nuevo); //Agregando elemento a la lista
-                Nuevo.AgregarAPila(Nuevo);  //Agregando a pila
                 Nuevo.Nombre = collection["Nombre"];
                 Nuevo.codigo = collection["Codigo"];
                 Nuevo.Citas = citas.Next(1, 5);
                 Nuevo.BoolOficina = true;
+                Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
 
-                if (Nuevo.Llegada == null)
+                if (Nuevo.Llegada == DateTime.MinValue)
                 {
                     Nuevo.Llegada = DateTime.Now;
-                }
-                else
-                {
-                    Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
                 }
 
                 Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
                 Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
+
+                Nuevo.AgregarALista(Nuevo); //Agregando elemento a la lista
+                Nuevo.AgregarAPila(Nuevo);  //Agregando a pila
 
                 //Regresa a Index
                 return RedirectToAction("Index");
@@ -70,6 +68,56 @@ namespace Lab_1.Controllers
                 return View();
             }
         }
-        
+
+
+
+
+
+        // GET: Trabajadores/Create
+        public ActionResult Busqueda()
+        {
+            return View();
+        }
+
+
+        // POST: Trabajadores/Create
+        [HttpPost]
+        public ActionResult Busqueda(FormCollection collection)
+        {
+            try
+            {
+                //Instancias
+                var Nuevo = new Trabajadores();
+                Random citas = new Random();
+
+                //Asignaciones
+
+                Nuevo.Nombre = collection["Nombre"];
+                Nuevo.codigo = collection["Codigo"];
+                Nuevo.Citas = citas.Next(1, 5);
+                Nuevo.BoolOficina = true;
+                Nuevo.Llegada = Convert.ToDateTime(collection["Llegada"]);
+
+                if (Nuevo.Llegada == DateTime.MinValue)
+                {
+                    Nuevo.Llegada = DateTime.Now;
+                }
+
+                Nuevo.Salida = Nuevo.HoraSalida(Nuevo.Llegada, Nuevo.Citas);
+                Nuevo.sueldoFinal = Nuevo.SueldoFinal(Nuevo.Citas);
+
+                Nuevo.AgregarALista(Nuevo); //Agregando elemento a la lista
+                Nuevo.AgregarAPila(Nuevo);  //Agregando a pila
+
+                //Regresa a Index
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
     }
 }

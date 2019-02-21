@@ -1,16 +1,13 @@
 ﻿@model Lab_1.Models.Trabajadores
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Busqueda";
 }
+<h2>Busqueda</h2>
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Trabajadores</h4>
         <hr />
@@ -22,7 +19,6 @@
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -30,20 +26,12 @@
                 @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Llegada, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Llegada, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Llegada, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Llegada, htmlAttributes: new { @class = "control-label col-md-2" })  
-            <label asp-for="Llegada" class="control-label"></label>
-            <input asp-for="Llegada" class="form-control" />
-            <span asp-validation-for="Llegada" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -53,11 +41,9 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

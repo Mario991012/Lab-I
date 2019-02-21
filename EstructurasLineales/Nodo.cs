@@ -11,6 +11,7 @@ namespace EstructurasLineales
         public Nodo<T> Siguiente { get; set; }
         public Nodo<T> Anterior { get; set; }
         public T Valor { get; set; }
+        public int posicion { get; set; }
 
         public Nodo(T valor)
         {
@@ -18,6 +19,7 @@ namespace EstructurasLineales
             Valor = valor;
             Siguiente = null;
             Anterior = null;
+            posicion = 0;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace EstructurasLineales
             {
                 Cabeza = Nodo;
                 tamaño++;
+                Nodo.posicion = 0;
             }
             else
             {
@@ -29,6 +30,7 @@ namespace EstructurasLineales
                 NodoAux.Siguiente = Nodo;
                 Nodo.Anterior = NodoAux;
                 tamaño++;
+                Nodo.posicion = Nodo.Anterior.posicion + 1;
             }
             
         }

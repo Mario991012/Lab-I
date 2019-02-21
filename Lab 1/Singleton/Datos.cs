@@ -26,3 +26,4 @@ namespace Lab_1.Singleton
         public EstructurasLineales.Pila<Trabajadores> PilaTrabajadores = new EstructurasLineales.Pila<Trabajadores>();
     }
 }
+
