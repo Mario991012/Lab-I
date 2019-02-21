@@ -4,10 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>MENÚ PRINCIPAL</h2>
-<h4>Empleados registrados</h4>
+<h1>EMPLEADOS REGISTRADOS</h1>
+<h4>MENÚ PRINCIPAL</h4>
 
-<h3>INFORMACION</h3>
 <table class="table">
     <tr>
         <th>
@@ -68,49 +67,71 @@
 
 </table>
 
-<button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
 <p>
-    @Html.ActionLink("Registrar empleado", "Create")<br />
+    @Html.ActionLink("Registrar trabajador", "Create")<br />
 </p>
 
-<p>@Html.ActionLink("Simular salida", "Salida")</p>
-<p>@Html.ActionLink("Simular entrada", "Entrada")</p>
+<ol>
+    @*SIMULACIONES*@
+    <li><h3>SIMULACIONES</h3>
+       <ul>
+           <li>
+               @Html.ActionLink("Simular salida", "Salida")
+           </li>
+           <li>
+               @Html.ActionLink("Simular entrada", "Entrada")
+           </li>
+       </ul>
+    </li>
+    <li>
+        <h3>PILA</h3>
+        <ul>
+            <li>
+                <button type="button" onclick="location.href = '@Url.Action("Index", "Pila")'">Ir a Pila</button>
+            </li>
+        </ul>
+    </li>
+    <li>
+        @*BARRAS DE BUSQUEDA*@
+        <h3>BUSQUEDA</h3>
+        
+        <ul>
+            @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+            {
+                <input type="text" name="nombre" id="nombre" />
 
+                <input type="submit" value="Buscar por nombre" />
+            }
+        </ul>
+        <ul>
+            @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+            {
+                <input type="text" name="codigo" id="id" />
 
-@*BARRAS DE BUSQUEDA*@
-<h3>BUSQUEDA</h3>
+                <input type="submit" value="Buscar por Código" />
+            }
+        </ul>
+        <ul>
+            @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+            {
+                <input type="text" name="disp" id="disp" />
+
+                <input type="submit" value="Verificar si se encuentra en oficina" />
+                <h6>Disponible = "true", No disponible = "false"</h6>
+            }
+        </ul>
+        <ul>
+            @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
+            {
+                <input type="text" name="horas" id="horas" />
+
+                <input type="submit" value="Buscar por horas trabajadas" />
+            }
+        </ul>
+    </li>
+</ol>
+
 <tr>
-    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
-    {
-        <input type="text" name="id" id="id" />
-
-        <input type="submit" value="Buscar por Código" />
-    }
-</tr>
-<tr>
-    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
-    {
-        <input type="text" name="nombre" id="nombre" />
-
-        <input type="submit" value="Buscar por nombre" />
-    }
-</tr>
-<tr>
-    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
-    {
-        <input type="text" name="disp" id="disp" />
-
-        <input type="submit" value="Verificar si se encuentra en oficina" />
-
-    }
-    <h5>Disponible = "True", No disponible = "False"</h5>
-</tr>
-<tr>
-    @using (Html.BeginForm("Resultados", "Trabajadores", FormMethod.Post))
-    {
-        <input type="text" name="horas" id="horas" />
-
-        <input type="submit" value="Buscar por horas trabajadas" />
-    }
+    
 </tr>
 

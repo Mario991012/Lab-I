@@ -66,7 +66,7 @@ namespace Lab_1.Controllers
         [HttpPost]
         public ActionResult Resultados(string codigo, string nombre, string disp, string horas)
         {
-            //List<Trabajadores> listaBusqueda = new List<Trabajadores>();
+            EstructurasLineales.ListaDoblementeEnlazada<Trabajadores> ListaAux = new EstructurasLineales.ListaDoblementeEnlazada<Trabajadores>();
 
             if (codigo != null)
             {
@@ -74,7 +74,7 @@ namespace Lab_1.Controllers
                 {
                     if (item.codigo == codigo)
                     {
-                        Datos.Instancia.ListaAux.Agregar(item);
+                        ListaAux.Agregar(item);
                     }
                 }
             }
@@ -84,8 +84,7 @@ namespace Lab_1.Controllers
                 {
                     if (item.Nombre == nombre)
                     {
-                        Datos.Instancia.ListaAux.Agregar(item);
-                        
+                        ListaAux.Agregar(item);
                     }
                 }
             }
@@ -95,7 +94,7 @@ namespace Lab_1.Controllers
                 {
                     if (item.BoolOficina == bool.Parse(disp))
                     {
-                        Datos.Instancia.ListaAux.Agregar(item);
+                        ListaAux.Agregar(item);
 
                     }
                 }
@@ -106,12 +105,11 @@ namespace Lab_1.Controllers
                 {
                     if (item.HorasTrabajadas == double.Parse(horas))
                     {
-                        Datos.Instancia.ListaAux.Agregar(item);
-
+                        ListaAux.Agregar(item);
                     }
                 }
             }
-            return View(Datos.Instancia.ListaAux);
+            return View(ListaAux);
         }
 
         public ActionResult Entrada()
